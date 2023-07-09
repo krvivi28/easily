@@ -1,10 +1,10 @@
-let db_id = 1;
+let db_id = 3;
 const jobs = [
   {
-    id: db_id,
+    id: 1,
     job_category: "Tech",
     job_designation: "SDE",
-    job_location: "gurgao HR IND",
+    job_location: "gurgao HR IND Remote",
     company_name: "Coding Ninjas",
     salary: "14-20lpa",
     apply_by: "30 Aug 2023",
@@ -25,38 +25,30 @@ const jobs = [
         name: "vivek",
         email: "krvivi28@gmail.com",
         contact: 7839358367,
-        resumePath: "uploads/vivekResume.pdf",
+        resumePath: "resume.pdf",
       },
     ],
   },
   {
-    id: db_id,
+    id: 2,
     job_category: "Tech",
-    job_designation: "SDE",
-    job_location: "gurgao HR IND",
-    company_name: "Coding Ninjas",
-    salary: "14-20lpa",
+    job_designation: "Angular Developer",
+    job_location: "Pune IND On-Site",
+    company_name: "Go Digit",
+    salary: "6-10lpa",
     apply_by: "30 Aug 2023",
-    skills_required: [
-      "REACT",
-      "NodeJs",
-      "JS",
-      "SQL",
-      "MongoDB",
-      "Express",
-      "AWS",
-    ],
-    number_of_openings: 5,
+    skills_required: ["Angular", "JS", "SQL", "MongoDB", "Express", "AWS"],
+    number_of_openings: 7,
     job_posted: new Date().toLocaleString(),
     applicants: [],
   },
   {
-    id: db_id,
+    id: 3,
     job_category: "Tech",
     job_designation: "SDE",
-    job_location: "gurgao HR IND",
-    company_name: "Coding Ninjas",
-    salary: "14-20lpa",
+    job_location: "Bangalore IND",
+    company_name: "Juspay",
+    salary: "20-26lpa",
     apply_by: "30 Aug 2023",
     skills_required: [
       "REACT",
@@ -67,7 +59,7 @@ const jobs = [
       "Express",
       "AWS",
     ],
-    number_of_openings: 5,
+    number_of_openings: 3,
     job_posted: new Date().toLocaleString(),
     applicants: [],
   },
@@ -132,7 +124,6 @@ export const addNewApplicant = (id, ...applicantData) => {
   const index = jobs.findIndex((job) => {
     return job.id == id;
   });
-  console.log(index);
   let applicantId = jobs[index].applicants.length + 1;
   jobs[index].applicants.push({
     applicat_id: applicantId,
@@ -150,63 +141,26 @@ export const sendAllApplicants = (id) => {
   });
   return jobs[index].applicants;
 };
-// createNewJob({
-//   job_category: "Tech",
-//   job_designation: "NodeJs SME",
-//   job_location: "gurgao HR IND",
-//   company_name: "Coding Ninjas",
-//   salary: "14-20lpa",
-//   apply_by: "30 Aug 2023",
-//   skills_required: ["NodeJs,Angular"],
-//   number_of_openings: 5,
-//   job_posted: new Date().toLocaleString(),
-//   applicants: [],
-// });
-// createNewJob({
-//   job_category: "Tech",
-//   job_designation: "NodeJs SME",
-//   job_location: "gurgao HR IND",
-//   company_name: "Coding Ninjas",
-//   salary: "14-20lpa",
-//   apply_by: "30 Aug 2023",
-//   skills_required: ["NodeJs,Angular"],
-//   number_of_openings: 5,
-//   job_posted: new Date().toLocaleString(),
-//   applicants: [],
-// });
-// for (let job of jobs) {
-//   console.log(job.skills_required);
-// }
-// export default class ProductModel {
-//   fetchProducts = () => {
-//     return products;
-//   };
-//   setProduct = (product) => {
-//     new ProductData(
-//       product.id,
-//       product.name,
-//       product.desc,
-//       product.price,
-//       product.img,
-//       product.uploadFileName
-//     );
-//   };
-//   findProduct = (id) => {
-//     return products.find((product) => {
-//       return product.id == id;
-//     });
-//   };
-//   updateProduct = (data) => {
-//     const id = data.id;
-//     return ProductData.productsList.map((product) => {
-//       return product.id === Number(id) ? data : product;
-//     });
-//   };
-//   deleteProduct = (id) => {
-//     const delIndex = products.findIndex((product) => {
-//       return product.id === id;
-//     });
-//     products.splice(delIndex, 1);
-//     return products;
-//   };
-// }
+export const updateJob = (id, data) => {
+  const index = jobs.findIndex((job) => {
+    return job.id == id;
+  });
+  jobs[index].company_name = data.company_name || jobs[index].company_name;
+  jobs[index].apply_by = data.apply_by || jobs[index].apply_by;
+  jobs[index].job_category = data.job_category || jobs[index].job_category;
+  jobs[index].job_designation =
+    data.job_designation || jobs[index].job_designation;
+  jobs[index].job_location = data.job_location || jobs[index].job_location;
+  jobs[index].job_posted = data.job_posted || jobs[index].job_posted;
+  jobs[index].number_of_openings =
+    data.number_of_openings || jobs[index].number_of_openings;
+  jobs[index].skills_required =
+    data.skills_required || jobs[index].skills_required;
+  jobs[index].salary = data.salary || jobs[index].salary;
+};
+export const deleteJob = (id) => {
+  const index = jobs.findIndex((job) => {
+    return job.id == id;
+  });
+  jobs.splice(index, 1);
+};

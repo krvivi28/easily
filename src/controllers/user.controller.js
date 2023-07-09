@@ -5,7 +5,7 @@ export default class UserController {
   };
   addUser = (req, res) => {
     UserModel.addUser(req.body);
-    res.send(req.body);
+    res.redirect("/login");
   };
   loginUser = (req, res) => {
     const { email, password } = req.body;

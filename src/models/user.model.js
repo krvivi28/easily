@@ -19,7 +19,6 @@ export default class UserModel {
   };
   static addUser = (user) => {
     UserModel.users.push(user);
-    console.log("all users", UserModel.users);
   };
   static confirmLogin(user) {
     const { email } = user;
