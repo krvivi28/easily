@@ -1,0 +1,1 @@
+1. By returning the promises, Promise.all() will wait for all the promises to resolve before proceeding to the next line of code, which is const errors = validationResult(req);. This will ensure that the errors are captured correctly.
